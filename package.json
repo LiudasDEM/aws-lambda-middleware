@@ -4,9 +4,10 @@
   "description": "aws lambda middleware and wrap classes library with several utility handlers examples",
   "main": "dist/index.js",
   "scripts": {
-    "test": "test",
     "build": "tsc",
-    "lint": "./node_modules/.bin/eslint ."
+    "lint": "./node_modules/.bin/eslint .",
+    "test": "ts-mocha -p tsconfig.json --timeout 10000 tests/**/*test.ts --reporter dot --exit",
+    "test:dev": "ts-mocha -p tsconfig.json --timeout 10000 tests/**/**test.ts -w --watch-extensions ts --reporter dot"
   },
   "keywords": [
     "aws",
@@ -18,11 +19,14 @@
   "devDependencies": {
     "@types/aws-lambda": "^8.10.68",
     "@types/aws-sdk": "^2.7.0",
+    "@types/mocha": "^8.2.0",
     "@types/node": "^14.14.19",
     "@typescript-eslint/eslint-plugin": "^4.11.1",
     "@typescript-eslint/parser": "^4.11.1",
     "aws-sdk": "^2.820.0",
     "eslint": "^7.17.0",
+    "mocha": "^8.2.1",
+    "ts-mocha": "^8.0.0",
     "typescript": "^4.1.3"
   },
   "dependencies": {},
