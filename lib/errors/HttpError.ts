@@ -5,6 +5,7 @@ import IHttpResponseParts from '../interfaces/IHttpResponseParts';
 export default class HttpError extends Error {
 	private _statusCode: number;
 	private _body: string;
+	private _extra: unknown;
 
 	static buildError(error: Error | HttpError): HttpResponse {
 		if (error instanceof HttpError) {
@@ -16,6 +17,7 @@ export default class HttpError extends Error {
 	constructor(statusCode = 500, message = 'InternalServerError', extra?: unknown) {
 		super(message);
 		this._statusCode = statusCode;
+		this._extra = extra;
 		this._body = JSON.stringify({ message, extra });
 	}
 
@@ -25,6 +27,10 @@ export default class HttpError extends Error {
 
 	public get body(): string {
 		return this._body;
+	}
+
+	public get extra(): unknown {
+		return this._extra;
 	}
 
 	getResponse(): IHttpResponseParts {
