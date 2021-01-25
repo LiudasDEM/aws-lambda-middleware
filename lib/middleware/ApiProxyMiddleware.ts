@@ -3,7 +3,6 @@ import type { APIGatewayEvent, Context } from 'aws-lambda';
 import BaseMiddleware from '../abstract/BaseMiddleware';
 
 import { IAPIGatewayProxyHandler, IAPIGatewayProxyHandlerAWS } from '../interfaces/IAPIGatewayProxyHandler';
-import IParsedProxyEvent from '../interfaces/IParsedProxyEvent';
 import IHttpResponseParts from '../interfaces/IHttpResponseParts';
 import { IAPIGatewayMiddlewareArgs } from '../interfaces/IAPIGatewayMiddlewareHandler';
 
@@ -13,7 +12,7 @@ import HttpResponse from '../responses/HttpResponse';
 export default class ApiProxyMiddleware extends BaseMiddleware<IAPIGatewayProxyHandlerAWS, IAPIGatewayProxyHandler, IAPIGatewayMiddlewareArgs> {
 	private wrappedFunction: IAPIGatewayProxyHandler;
 
-	constructor(wrappedFunction: IAPIGatewayProxyHandler) {
+	constructor(wrappedFunction: IAPIGatewayProxyHandler<any>) {
 		super();
 		this.wrappedFunction = wrappedFunction;
 	}
@@ -23,7 +22,7 @@ export default class ApiProxyMiddleware extends BaseMiddleware<IAPIGatewayProxyH
 			// @ts-ignore
 			const initialParsedEvent: IParsedProxyEvent = {};
 
-			const fn = async (parsedEvent: IParsedProxyEvent, event: APIGatewayEvent, context: Context): Promise<IHttpResponseParts | HttpResponse> => {
+			const fn = async (parsedEvent: unknown, event: APIGatewayEvent, context: Context): Promise<IHttpResponseParts | HttpResponse> => {
 				for (const ware of this.wares) {
 					await ware.run({ parsedEvent, event, context });
 				}

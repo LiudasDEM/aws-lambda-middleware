@@ -26,7 +26,7 @@ describe('ApiProxyMiddleware class', function () {
 
 
 	it('should create aws proxy handler parse body of given handler\'s event', async function () {
-		const proxyHandler: IAPIGatewayProxyHandler<{ key: 'string' }> = async (parsedEvent) => {
+		const proxyHandler: IAPIGatewayProxyHandler<{ body: { key: 'string' } }> = async (parsedEvent) => {
 			assert.deepStrictEqual(parsedEvent.body, { key: 'value' });
 			return new HttpResponse(200);
 		};
@@ -40,7 +40,7 @@ describe('ApiProxyMiddleware class', function () {
 
 	it('should catch all thrown errors when handler is wrapped', async function () {
 		console.error = () => { };
-		const proxyHandler: IAPIGatewayProxyHandler<{ key: 'string' }> = async () => {
+		const proxyHandler: IAPIGatewayProxyHandler = async () => {
 			throw new HttpError(400, 'TESTING THROWING');
 		};
 

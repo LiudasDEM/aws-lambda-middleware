@@ -7,7 +7,7 @@ export default class BodyParser extends Ware<IAPIGatewayMiddlewareArgs> {
 		super();
 	}
 
-	async run({ parsedEvent, event }: IAPIGatewayMiddlewareArgs): Promise<void> {
+	async run({ parsedEvent, event }: IAPIGatewayMiddlewareArgs<{ body: unknown }>): Promise<void> {
 		if (event.headers['Content-Type'] && event.headers['Content-Type'].includes('application/json')) {
 			parsedEvent.body = event.body ? JSON.parse(event.body) : null;
 		}

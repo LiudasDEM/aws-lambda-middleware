@@ -1,9 +1,7 @@
 import type { APIGatewayEvent, Context } from 'aws-lambda';
 
-import IParsedProxyEvent from '../interfaces/IParsedProxyEvent';
-
-export interface IAPIGatewayMiddlewareArgs<ParsedBodyType = unknown> {
-	parsedEvent: IParsedProxyEvent<ParsedBodyType>;
+export interface IAPIGatewayMiddlewareArgs<ParsedProxyEventType = unknown> {
+	parsedEvent: ParsedProxyEventType;
 	event: APIGatewayEvent;
 	context: Context;
 }

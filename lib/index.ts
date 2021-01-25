@@ -26,4 +26,3 @@ export type { default as IAPIGatewayProxyHandler } from './interfaces/IAPIGatewa
 export * from './interfaces/IAPIGatewayProxyHandler';
 
 export type { default as IHttpResponseParts } from './interfaces/IHttpResponseParts';
-export type { default as IParsedProxyEvent } from './interfaces/IParsedProxyEvent';

@@ -8,7 +8,7 @@ export default class HttpResponse {
 	private _headers: { [key: string]: string };
 
 	static defaultHeaders: IHeaders = {
-		'content-type': 'application/json',
+		'Content-Type': 'application/json',
 	};
 
 	static buildResponse(res: HttpResponse | IHttpResponseParts): IHttpResponseParts {
