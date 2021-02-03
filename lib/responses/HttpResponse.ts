@@ -1,6 +1,7 @@
 import IHeaders from '../interfaces/IHeaders';
 import IHttpResponseParts from '../interfaces/IHttpResponseParts';
 
+import HeadersFixer from '../proxy/HeadersFixer';
 
 export default class HttpResponse {
 	private _statusCode: number;
@@ -40,7 +41,12 @@ export default class HttpResponse {
 		return {
 			statusCode: this._statusCode,
 			body: this._body,
-			headers: this._headers,
+			headers: Object
+				.entries(this._headers)
+				.reduce((acc, [k, v]) => ({
+					...acc,
+					[HeadersFixer.uppercaseHeader(k)]: v,
+				}), {}),
 		};
 	}
 }

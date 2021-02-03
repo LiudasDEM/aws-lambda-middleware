@@ -7,6 +7,8 @@ export { default as HttpError } from './errors/HttpError';
 export { default as BadRequest } from './errors/BadRequest';
 export { default as Conflict } from './errors/Conflict';
 export { default as NotFound } from './errors/NotFound';
+export { default as Unauthorized } from './errors/Unauthorized';
+export { default as Forbidden } from './errors/Forbidden';
 
 export { default as Created } from './responses/Created';
 export { default as HttpResponse } from './responses/HttpResponse';
@@ -18,6 +20,7 @@ export { default as ApiProxyMiddleware } from './middleware/ApiProxyMiddleware';
 
 export { default as BodyParser } from './proxy/BodyParser';
 export { default as ErrorHandler } from './proxy/ErrorHandler';
+export { default as HeadersFixer } from './proxy/HeadersFixer';
 
 export type { default as IAPIGatewayMiddlewareHandler } from './interfaces/IAPIGatewayMiddlewareHandler';
 export * from './interfaces/IAPIGatewayMiddlewareHandler';

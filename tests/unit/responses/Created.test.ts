@@ -17,7 +17,7 @@ describe('HTTP Created response class', function () {
 		assert.deepStrictEqual(res.getResponse(), {
 			statusCode: 201,
 			headers: {
-				location: 'http://localhost:8080/location',
+				Location: 'http://localhost:8080/location',
 			},
 			body: 'null',
 		});

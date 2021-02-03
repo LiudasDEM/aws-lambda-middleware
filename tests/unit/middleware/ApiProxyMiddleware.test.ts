@@ -5,6 +5,7 @@ import { apiGatewayEvent, context } from '../../mock';
 import ApiProxyMiddleware from '../../../lib/middleware/ApiProxyMiddleware';
 import ErrorHandler from '../../../lib/proxy/ErrorHandler';
 import BodyParser from '../../../lib/proxy/BodyParser';
+import HeadersFixer from '../../../lib/proxy/HeadersFixer';
 
 import { IAPIGatewayProxyHandler } from '../../../lib/interfaces/IAPIGatewayProxyHandler';
 
@@ -55,5 +56,32 @@ describe('ApiProxyMiddleware class', function () {
 			headers: { 'Content-Type': 'application/json' },
 			statusCode: 400,
 		});
+	});
+
+	it('should uppercase all headers when HeadersFixer is added', async function () {
+		console.error = () => { };
+		const proxyHandler: IAPIGatewayProxyHandler = async (_, event) => {
+			assert.deepStrictEqual(event.headers, {
+				'First': 'first',
+				'Second': 'second',
+				'Third-Fourth': 'third-fourth',
+				'Fifth-Sixth-Seventh': 'fifth-sixth-seventh',
+			});
+
+			return new HttpResponse().getResponse();
+		};
+
+		const handler = new ApiProxyMiddleware(proxyHandler)
+			.add(new HeadersFixer())
+			.getHandler();
+
+		await handler(apiGatewayEvent({
+			headers: {
+				'first': 'first',
+				'Second': 'second',
+				'Third-fourth': 'third-fourth',
+				'fifth-Sixth-seventh': 'fifth-sixth-seventh',
+			},
+		}), context());
 	});
 });
