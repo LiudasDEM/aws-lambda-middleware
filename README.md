@@ -68,7 +68,7 @@ export const handler = new ApiProxyMiddleware(proxyHandler)
 
 This function wraps your lambda and catches all errors, then gives response accordingly
 
-You can create any time of middleware based on exposed abstract class `Ware`, for example you can have `Session` middleware:
+You can create any type of middleware based on exposed abstract class `Ware`, for example you can have `Session` middleware:
 
 ```typescript
 import { ApiProxyMiddleware, Ware, Unauthorized, ErrorHandler, IAPIGatewayMiddlewareArgs, IAPIGatewayProxyHandler } from 'aws-lambda-middleware';
