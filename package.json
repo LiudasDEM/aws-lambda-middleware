@@ -14,10 +14,10 @@
     "aws",
     "lambda",
     "middleware",
-		"rest",
-		"http"
+    "rest",
+    "http"
   ],
-  "author": "Liudas Demikis <liudas.demikis97@gmail.com>",
+  "author": "LiudasDEM <liudas.demikis97@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "@types/aws-lambda": "^8.10.68",
