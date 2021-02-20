@@ -134,6 +134,6 @@ export const handler = new ApiProxyMiddleware(proxyHandler)
 | ------- | ---- | ------- | ---- | ------- |
 | Accepted | 202 | any | any | `return new Accepted(body?, headers?)` |
 | Created | 201 | any | no | `return new Created(location?, headers?)` |
-| NoContent | 204 | any | no | `return new NoContent(heaaders?)`
+| NoContent | 204 | any | no | `return new NoContent(headers?)`
 | Success | 200 | any | any | `return new Success(body?, headers?)` |
 
