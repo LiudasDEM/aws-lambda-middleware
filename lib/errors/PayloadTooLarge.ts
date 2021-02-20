@@ -1,7 +1,7 @@
 import HttpError from './HttpError';
 
-export default class Unauthorized extends HttpError {
+export default class Forbidden extends HttpError {
 	constructor(extra?: string | Record<string, string>) {
-		super(401, 'Unauthorized', extra);
+		super(413, 'PayloadTooLarge', extra);
 	}
 }

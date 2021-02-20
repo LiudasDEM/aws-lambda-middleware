@@ -9,6 +9,9 @@ export { default as Conflict } from './errors/Conflict';
 export { default as NotFound } from './errors/NotFound';
 export { default as Unauthorized } from './errors/Unauthorized';
 export { default as Forbidden } from './errors/Forbidden';
+export { default as MethodNotAllowed } from './errors/MethodNotAllowed';
+export { default as PayloadTooLarge } from './errors/PayloadTooLarge';
+export { default as TooManyRequests } from './errors/TooManyRequests';
 
 export { default as Created } from './responses/Created';
 export { default as HttpResponse } from './responses/HttpResponse';
