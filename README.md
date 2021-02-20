@@ -1,4 +1,4 @@
-# aws-lambda-middleware
+# lambda-middleware-utils
 
 Library provides three different types of resources:
 
@@ -14,7 +14,7 @@ Middleware functions allows you to have a cleaner code structure.
 1. BodyParser
 
 ```typescript
-import { ApiProxyMiddleware, BodyParser, Success, IAPIGatewayProxyHandler } from 'aws-lambda-middleware';
+import { ApiProxyMiddleware, BodyParser, Success, IAPIGatewayProxyHandler } from 'lambda-middleware-utils';
 
 interface IBody {}
 
@@ -34,7 +34,7 @@ This function checks if your proxy event has `Content-Type` or `content-type` he
 2. HeadersFixer
 
 ```typescript
-import { ApiProxyMiddleware, HeadersFixer, Success, IAPIGatewayProxyHandler } from 'aws-lambda-middleware';
+import { ApiProxyMiddleware, HeadersFixer, Success, IAPIGatewayProxyHandler } from 'lambda-middleware-utils';
 
 
 const proxyHandler: IAPIGatewayProxyHandler = function(_, event) {
@@ -53,7 +53,7 @@ This function evens all event headers to uppercase: content-type -> Content-Type
 3. ErrorHandler
 
 ```typescript
-import { ApiProxyMiddleware, HttpError, Success, IAPIGatewayProxyHandler } from 'aws-lambda-middleware';
+import { ApiProxyMiddleware, HttpError, Success, IAPIGatewayProxyHandler } from 'lambda-middleware-utils';
 
 
 const proxyHandler: IAPIGatewayProxyHandler = function(_, event) {
@@ -71,7 +71,7 @@ This function wraps your lambda and catches all errors, then gives response acco
 You can create any type of middleware based on exposed abstract class `Ware`, for example you can have `Session` middleware:
 
 ```typescript
-import { ApiProxyMiddleware, Ware, Unauthorized, ErrorHandler, IAPIGatewayMiddlewareArgs, IAPIGatewayProxyHandler } from 'aws-lambda-middleware';
+import { ApiProxyMiddleware, Ware, Unauthorized, ErrorHandler, IAPIGatewayMiddlewareArgs, IAPIGatewayProxyHandler } from 'lambda-middleware-utils';
 
 
 class Session extends Ware<IAPIGatewayMiddlewareArgs> {

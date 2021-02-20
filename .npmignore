@@ -1,4 +1,4 @@
-aws-lambda-middleware-*.tgz
+lambda-middleware-utils-*.tgz
 tests
 node_modules
 tests
