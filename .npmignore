@@ -4,3 +4,5 @@ node_modules
 tests
 lib
 .editorconfig
+coverage
+.nyc_output
