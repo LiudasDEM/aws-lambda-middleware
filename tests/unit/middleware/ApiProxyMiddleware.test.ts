@@ -39,6 +39,35 @@ describe('ApiProxyMiddleware class', function () {
 		await handler(apiGatewayEvent({ body: JSON.stringify({ key: 'value' }) }), context());
 	});
 
+	it('should not throw when body is not set and BodyParser is', async function () {
+		const proxyHandler: IAPIGatewayProxyHandler<{ body: null }> = async (parsedEvent) => {
+			assert.deepStrictEqual(parsedEvent.body, null);
+			return new HttpResponse(200);
+		};
+
+		const handler = new ApiProxyMiddleware(proxyHandler)
+			.add(new BodyParser())
+			.getHandler();
+
+		await handler(apiGatewayEvent(), context());
+	});
+
+	it('should parseBody when content-type header is lowercased', async function () {
+		const proxyHandler: IAPIGatewayProxyHandler<{ body: { key: 'string' } }> = async (parsedEvent) => {
+			assert.deepStrictEqual(parsedEvent.body, { key: 'value' });
+			return new HttpResponse(200);
+		};
+
+		const handler = new ApiProxyMiddleware(proxyHandler)
+			.add(new BodyParser())
+			.getHandler();
+
+		const event = apiGatewayEvent({ body: JSON.stringify({ key: 'value' }) });
+		event.headers = { 'content-type': 'application/json' };
+
+		await handler(event, context());
+	});
+
 	it('should catch all thrown errors when handler is wrapped', async function () {
 		console.error = () => { };
 		const proxyHandler: IAPIGatewayProxyHandler = async () => {
@@ -83,5 +112,22 @@ describe('ApiProxyMiddleware class', function () {
 				'fifth-Sixth-seventh': 'fifth-sixth-seventh',
 			},
 		}), context());
+	});
+
+	it('should not throw when event does not have any headers', async function () {
+		console.error = () => { };
+		const proxyHandler: IAPIGatewayProxyHandler = async (_, event) => {
+			assert.deepStrictEqual(event.headers, undefined);
+
+			return new HttpResponse().getResponse();
+		};
+
+		const handler = new ApiProxyMiddleware(proxyHandler)
+			.add(new HeadersFixer())
+			.getHandler();
+
+		const event = apiGatewayEvent({ headers: undefined });
+
+		await handler(event, context());
 	});
 });

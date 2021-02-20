@@ -23,4 +23,16 @@ describe('HTTP HttpResponse response class', function () {
 			},
 		});
 	});
+
+	it('should allow to access body and headers', function () {
+		const res = new HttpResponse(200, {}, {
+			'Content-Type': 'application/json',
+		});
+
+		assert.deepStrictEqual(res.headers, {
+			'Content-Type': 'application/json',
+		});
+
+		assert.deepStrictEqual(res.body, '{}');
+	});
 });

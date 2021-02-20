@@ -43,7 +43,7 @@ export function s3Event(options?: Partial<S3Event>): S3Event {
 
 export function apiGatewayEvent(options?: Partial<APIGatewayEvent>): APIGatewayEvent {
 	return {
-		body: JSON.stringify(null),
+		body: null,
 		headers: {
 			'Content-Type': 'application/json',
 		},
