@@ -1,6 +1,6 @@
 {
   "name": "lambda-middleware-utils",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "aws lambda middleware and wrap classes library with several utility handlers examples",
   "main": "dist/index.js",
   "scripts": {
