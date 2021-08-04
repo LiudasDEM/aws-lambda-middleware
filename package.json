@@ -17,11 +17,11 @@
     "rest",
     "http"
   ],
-	"repository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/LiudasDEM/aws-lambda-middleware"
   },
-	"homepage": "https://github.com/LiudasDEM/aws-lambda-middleware#readme",
+  "homepage": "https://github.com/LiudasDEM/aws-lambda-middleware#readme",
   "author": "LiudasDEM <liudas.demikis97@gmail.com>",
   "license": "MIT",
   "devDependencies": {
