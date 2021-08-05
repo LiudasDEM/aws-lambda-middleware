@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/LiudasDEM/aws-lambda-middleware#readme",
   "author": "LiudasDEM <liudas.demikis97@gmail.com>",
+	"contributors": ["Augustas Maslauskas <augustas.maslauskas@gmail.com>"],
   "license": "MIT",
   "devDependencies": {
     "@types/aws-lambda": "^8.10.68",

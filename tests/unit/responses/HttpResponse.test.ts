@@ -1,7 +1,7 @@
 import 'mocha';
 import assert from 'assert';
 
-import { HttpResponse } from '../../util';
+import HttpResponse from '../../../lib/responses/HttpResponse';
 
 
 describe('HTTP HttpResponse response class', function () {
@@ -42,7 +42,7 @@ describe('HTTP HttpResponse response class', function () {
 		});
 
 		after(function () {
-			HttpResponse.restoreDefaultHeaders();
+			HttpResponse.defaultHeaders = { 'Content-Type': 'application/json' };
 		});
 
 		it('should expand default headers', function () {
@@ -54,7 +54,7 @@ describe('HTTP HttpResponse response class', function () {
 			});
 
 			assert.deepStrictEqual(res.body, '{}');
-		})
+		});
 	});
 
 	describe('HTTP HttpResponse response class with expanded mandatory headers', function () {
@@ -63,7 +63,7 @@ describe('HTTP HttpResponse response class', function () {
 		});
 
 		after(function () {
-			HttpResponse.restoreDefaultMandatoryHeaders();
+			HttpResponse.mandatoryHeaders = {};
 		});
 
 		it('should expand default headers', function () {
@@ -75,6 +75,6 @@ describe('HTTP HttpResponse response class', function () {
 			});
 
 			assert.deepStrictEqual(res.body, '{}');
-		})
+		});
 	});
 });
