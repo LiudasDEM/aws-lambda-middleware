@@ -66,8 +66,19 @@ describe('HTTP HttpResponse response class', function () {
 			HttpResponse.mandatoryHeaders = {};
 		});
 
-		it('should expand default headers', function () {
+		it('should expand mandatory headers and add to response when headers are not set', function () {
 			const res = new HttpResponse(200, {});
+
+			assert.deepStrictEqual(res.headers, {
+				'Content-Type': 'application/json',
+				'X-Content-Type-Options': 'nosniff',
+			});
+
+			assert.deepStrictEqual(res.body, '{}');
+		});
+
+		it('should expand mandatory headers and add to response when headers are set', function () {
+			const res = new HttpResponse(200, {}, { 'Content-Type': 'application/json' });
 
 			assert.deepStrictEqual(res.headers, {
 				'Content-Type': 'application/json',
