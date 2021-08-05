@@ -12,6 +12,16 @@ export default class HttpResponse {
 		'Content-Type': 'application/json',
 	};
 
+	static mandatoryHeaders: IHeaders = {};
+
+	static expandMandatoryHeaders(headers: IHeaders): void {
+		HttpResponse.mandatoryHeaders = { ...HttpResponse.mandatoryHeaders, ...headers };
+	}
+
+	static expandDefaultHeaders(headers: IHeaders): void {
+		HttpResponse.defaultHeaders = { ...HttpResponse.defaultHeaders, ...headers };
+	}
+
 	static buildResponse(res: HttpResponse | IHttpResponseParts): IHttpResponseParts {
 		if (res instanceof HttpResponse) {
 			return res.getResponse();
@@ -22,7 +32,7 @@ export default class HttpResponse {
 	constructor(statusCode = 200, body: unknown = undefined, headers = HttpResponse.defaultHeaders) {
 		this._statusCode = statusCode;
 		this._body = typeof body === 'string' ? body : JSON.stringify(body);
-		this._headers = headers;
+		this._headers = { ...headers, ...HttpResponse.mandatoryHeaders };
 	}
 
 	public get statusCode(): number {
